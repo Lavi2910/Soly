@@ -1,16 +1,17 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import solyTheme from '@/styles/theme';
 import Home from '@/pages/Home';
+import { SolyCard } from './components/ui/SolyCard/SolyCard';
 
 function App() {
   return (
     <ConfigProvider theme={solyTheme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <SolyCard></SolyCard>
+      <SolyCard variant="outlined"></SolyCard>
     </ConfigProvider>
   );
 }
