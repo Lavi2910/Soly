@@ -4,12 +4,15 @@ on:
   pull_request:
     types: [opened, edited, synchronize]
 
+permissions:
+  pull-requests: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - name: Check PR checklist
-        uses: mheap/require-checklist-action@v5
+        uses: mheap/require-checklist-action@v2
         with:
           requireChecklist: true
         env:
