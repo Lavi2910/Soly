@@ -1,0 +1,19 @@
+name: PR Checklist
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+permissions:
+  issues: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR checklist
+        uses: mheap/require-checklist-action@v2
+        with:
+          requireChecklist: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
