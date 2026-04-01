@@ -19,7 +19,7 @@ export const getVariantStyles = (
   },
   gradient: {
     background: colors.gradientPrimary,
-    boxShadow: token.boxShadowSecondary,
+    boxShadow: token.boxShadow,
     color: token.colorBgContainer,
   },
 });
