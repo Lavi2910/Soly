@@ -12,6 +12,9 @@ function App() {
       </Routes>
       <SolyCard></SolyCard>
       <SolyCard variant="outlined"></SolyCard>
+      <SolyCard variant="gradient">
+        <h1>קבע תור עכשיו</h1>
+      </SolyCard>
     </ConfigProvider>
   );
 }
