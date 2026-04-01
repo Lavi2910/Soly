@@ -12,7 +12,7 @@ interface SolyTypographyProps {
 
 export const SolyTypography = ({
   children,
-  variant = 'body',
+  variant,
   style,
   color,
 }: SolyTypographyProps) => {
