@@ -21,7 +21,11 @@ export const SolyTypography = ({
   if (component === 'Title') {
     return (
       <Typography.Title
-        style={{ ...types.variantStyles[variant], ...style, color }}
+        style={{
+          ...types.variantStyles[variant],
+          ...style,
+          ...(color !== undefined ? { color } : {}),
+        }}
       >
         {children}
       </Typography.Title>
@@ -30,8 +34,11 @@ export const SolyTypography = ({
 
   return (
     <Typography.Text
-      style={{ ...types.variantStyles[variant], ...style }}
-      color={color}
+      style={{
+        ...types.variantStyles[variant],
+        ...style,
+        ...(color !== undefined ? { color } : {}),
+      }}
     >
       {children}
     </Typography.Text>
