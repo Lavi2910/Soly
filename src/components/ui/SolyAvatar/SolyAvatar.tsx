@@ -2,7 +2,7 @@ import { Avatar, theme, type AvatarProps as AntdAvatarProps } from 'antd';
 import { type SolyAvatarVariants } from './styles';
 import * as styles from './styles';
 
-interface AvatarProps extends AntdAvatarProps {
+interface SolyAvatarProps extends AntdAvatarProps {
   variant?: SolyAvatarVariants;
   name?: string;
 }
@@ -12,7 +12,7 @@ export const SolyAvatar = ({
   style,
   name,
   ...props
-}: AvatarProps) => {
+}: SolyAvatarProps) => {
   const { token } = theme.useToken();
   const variantStyle = styles.getAvatarStyle();
   const nameStyle =
