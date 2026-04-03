@@ -1,6 +1,7 @@
 import { SolyTypography } from '@/components/ui/SolyTypography/SolyTypography';
 import { SolyCard } from '@/components/ui/SolyCard/SolyCard';
 import { SolyButton } from '@/components/ui/SolyButton/SolyButton';
+import { SolyAvatar } from '@/components/ui/SolyAvatar/SolyAvatar';
 
 const Home = () => {
   return (
@@ -21,6 +22,11 @@ const Home = () => {
           בדיקה
         </SolyTypography>
       </SolyButton>
+
+      <SolyAvatar variant="medium" name="איציק" />
+      <SolyAvatar variant="medium" name="יוני" />
+      <SolyAvatar variant="medium" name="שרון" />
+      <SolyAvatar variant="medium" name="יוגי" />
     </>
   );
 };
