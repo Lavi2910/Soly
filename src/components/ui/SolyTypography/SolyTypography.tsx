@@ -1,7 +1,7 @@
 import { Typography } from 'antd';
 import type { CSSProperties, ReactNode } from 'react';
-import * as types from './types';
-import { type TypographyVariant } from './types';
+import * as types from './styles';
+import { type TypographyVariant } from './styles';
 
 interface SolyTypographyProps {
   children: ReactNode;
