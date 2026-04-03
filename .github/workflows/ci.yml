@@ -42,3 +42,6 @@ jobs:
 
       - name: Build provider
         run: pnpm --filter @soly/provider build
+      
+      - name: Type check (backend)
+        run: pnpm --filter @soly/backend typecheck
