@@ -3,7 +3,7 @@ import { type ButtonProps as AntdButtonProps } from 'antd';
 import { type SolyButtonVariant } from './styles';
 import * as styles from './styles';
 
-interface ButtonProps extends Omit<AntdButtonProps, 'variant'> {
+interface SolyButtonProps extends Omit<AntdButtonProps, 'variant'> {
   variant?: SolyButtonVariant;
 }
 
@@ -12,7 +12,7 @@ export const SolyButton = ({
   style,
   variant = 'outlined',
   ...props
-}: ButtonProps) => {
+}: SolyButtonProps) => {
   const { token } = theme.useToken();
   const variantStyles = styles.getButtonStyles(token);
 

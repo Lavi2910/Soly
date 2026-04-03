@@ -2,6 +2,7 @@ import { SolyTypography } from '@/components/ui/SolyTypography/SolyTypography';
 import { SolyCard } from '@/components/ui/SolyCard/SolyCard';
 import { SolyButton } from '@/components/ui/SolyButton/SolyButton';
 import { SolyAvatar } from '@/components/ui/SolyAvatar/SolyAvatar';
+import { SolyTag } from '@/components/ui/SolyTag/SolyTag';
 
 const Home = () => {
   return (
@@ -27,6 +28,16 @@ const Home = () => {
       <SolyAvatar variant="medium" name="יוני" />
       <SolyAvatar variant="medium" name="שרון" />
       <SolyAvatar variant="medium" name="יוגי" />
+
+      <SolyTag>
+        <SolyTypography variant="body">בדיקה</SolyTypography>
+      </SolyTag>
+      <SolyTag variant="highlight">
+        <SolyTypography variant="body">בדיקה</SolyTypography>
+      </SolyTag>
+      <SolyTag variant="status">
+        <SolyTypography variant="body">בדיקה</SolyTypography>
+      </SolyTag>
     </>
   );
 };
