@@ -3,6 +3,7 @@ import { SolyCard } from '@/components/ui/SolyCard/SolyCard';
 import { SolyButton } from '@/components/ui/SolyButton/SolyButton';
 import { SolyAvatar } from '@/components/ui/SolyAvatar/SolyAvatar';
 import { SolyTag } from '@/components/ui/SolyTag/SolyTag';
+import { SolyRating } from '@/components/ui/SolyRate/SolyRating';
 
 const Home = () => {
   return (
@@ -38,6 +39,8 @@ const Home = () => {
       <SolyTag variant="status">
         <SolyTypography variant="body">בדיקה</SolyTypography>
       </SolyTag>
+
+      <SolyRating disabled value={4.8} />
     </>
   );
 };
