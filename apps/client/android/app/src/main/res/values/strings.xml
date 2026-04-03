@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Soly</string>
+    <string name="title_activity_main">Soly</string>
+    <string name="package_name">com.soly.client</string>
+    <string name="custom_url_scheme">com.soly.client</string>
+</resources>
