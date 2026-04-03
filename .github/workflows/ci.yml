@@ -31,8 +31,14 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Type check
-        run: pnpm tsc -b
+      - name: Type check (client)
+        run: pnpm --filter @soly/client tsc -b
 
-      - name: Build
-        run: pnpm build
+      - name: Type check (provider)
+        run: pnpm --filter @soly/provider tsc -b
+
+      - name: Build client
+        run: pnpm --filter @soly/client build
+
+      - name: Build provider
+        run: pnpm --filter @soly/provider build
