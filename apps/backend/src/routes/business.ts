@@ -86,4 +86,13 @@ router.put('/businesses/:id', authenticate, async (req, res) => {
   }
 });
 
+router.get('/businesses', async (req, res) => {
+  try {
+    const businesses = await prisma.business.findMany();
+    res.status(200).json(businesses);
+  } catch {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 export default router;
