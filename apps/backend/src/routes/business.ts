@@ -13,6 +13,14 @@ router.post('/businesses', authenticate, async (req, res) => {
       res.status(400).json({ error: 'Missing arguments' });
       return;
     }
+    const existing = await prisma.business.findUnique({
+      where: { ownerId: req.userId! },
+    });
+    if (existing) {
+      res.status(409).json({ error: 'You already own a business' });
+      return;
+    }
+
     const business = await prisma.business.create({
       data: {
         name,

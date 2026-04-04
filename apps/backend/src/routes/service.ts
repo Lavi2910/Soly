@@ -14,6 +14,18 @@ router.post('/services', authenticate, async (req, res) => {
       return;
     }
 
+    if (
+      typeof duration !== 'number' ||
+      duration <= 0 ||
+      typeof price !== 'number' ||
+      price <= 0
+    ) {
+      res
+        .status(400)
+        .json({ error: 'Duration and price must be positive numbers' });
+      return;
+    }
+
     const business = await prisma.business.findUnique({
       where: { id: businessId },
     });
@@ -28,17 +40,32 @@ router.post('/services', authenticate, async (req, res) => {
       return;
     }
 
+    if (providerIds !== undefined && providerIds.length > 0) {
+      const validProviders = await prisma.user.findMany({
+        where: {
+          id: { in: providerIds },
+          role: 'PROVIDER',
+          worksAtId: businessId,
+        },
+      });
+      if (validProviders.length !== providerIds.length) {
+        res.status(400).json({ error: 'One or more provider IDs are invalid' });
+        return;
+      }
+    }
+
     const service = await prisma.service.create({
       data: {
         name,
         duration,
         price,
         businessId,
-        providers: providerIds?.length
-          ? {
-              connect: providerIds.map((id: string) => ({ id })),
-            }
-          : undefined,
+        providers:
+          providerIds !== undefined
+            ? {
+                connect: providerIds.map((id: string) => ({ id })),
+              }
+            : undefined,
       },
     });
 
@@ -75,6 +102,16 @@ router.delete('/services/:id', authenticate, async (req, res) => {
       return;
     }
 
+    const activeCount = await prisma.appointment.count({
+      where: { serviceId, status: { not: 'CANCELED' } },
+    });
+    if (activeCount > 0) {
+      res
+        .status(409)
+        .json({ error: 'Cannot delete service with active appointments' });
+      return;
+    }
+
     await prisma.service.delete({ where: { id: serviceId } });
     res.json({ message: 'Service deleted' });
   } catch {
@@ -108,17 +145,43 @@ router.put('/services/:id', authenticate, async (req, res) => {
       return;
     }
 
+    if (
+      (duration !== undefined &&
+        (typeof duration !== 'number' || duration <= 0)) ||
+      (price !== undefined && (typeof price !== 'number' || price <= 0))
+    ) {
+      res
+        .status(400)
+        .json({ error: 'Duration and price must be positive numbers' });
+      return;
+    }
+
+    if (providerIds !== undefined && providerIds.length > 0) {
+      const validProviders = await prisma.user.findMany({
+        where: {
+          id: { in: providerIds },
+          role: 'PROVIDER',
+          worksAtId: service.businessId,
+        },
+      });
+      if (validProviders.length !== providerIds.length) {
+        res.status(400).json({ error: 'One or more provider IDs are invalid' });
+        return;
+      }
+    }
+
     const updatedService = await prisma.service.update({
       where: { id: serviceId },
       data: {
         name,
         duration,
         price,
-        providers: providerIds?.length
-          ? {
-              set: providerIds.map((id: string) => ({ id })),
-            }
-          : undefined,
+        providers:
+          providerIds !== undefined
+            ? {
+                set: providerIds.map((id: string) => ({ id })),
+              }
+            : undefined,
       },
     });
 

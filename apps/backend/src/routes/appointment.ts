@@ -29,6 +29,10 @@ router.post('/appointments', authenticate, async (req, res) => {
     }
 
     const newStart = new Date(time);
+    if (isNaN(newStart.getTime())) {
+      res.status(400).json({ error: 'Invalid date format' });
+      return;
+    }
     const conflict = await hasTimeConflict(
       providerId,
       newStart,
@@ -97,7 +101,11 @@ router.put('/appointments/:id', authenticate, async (req, res) => {
     }
 
     if (isCustomer && status && status != 'CANCELED') {
-      res.status(403).json({ error: 'Customers can only cancel appointments' });
+      res
+        .status(403)
+        .json({
+          error: 'Customers can only cancel or reschedule appointments',
+        });
       return;
     }
 
@@ -111,6 +119,10 @@ router.put('/appointments/:id', authenticate, async (req, res) => {
     }
     if (time) {
       const newTime = new Date(time);
+      if (isNaN(newTime.getTime())) {
+        res.status(400).json({ error: 'Invalid date format' });
+        return;
+      }
       const conflict = await hasTimeConflict(
         appointment.providerId,
         newTime,
