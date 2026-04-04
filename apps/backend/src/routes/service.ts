@@ -40,6 +40,19 @@ router.post('/services', authenticate, async (req, res) => {
       return;
     }
 
+    if (
+      providerIds !== undefined &&
+      !(
+        Array.isArray(providerIds) &&
+        providerIds.every((id: unknown) => typeof id === 'string')
+      )
+    ) {
+      res
+        .status(400)
+        .json({ error: 'providerIds must be an array of strings' });
+      return;
+    }
+
     if (providerIds !== undefined && providerIds.length > 0) {
       const validProviders = await prisma.user.findMany({
         where: {
@@ -142,6 +155,19 @@ router.put('/services/:id', authenticate, async (req, res) => {
 
     if (business.ownerId !== userId) {
       res.status(403).json({ error: 'Forbidden' });
+      return;
+    }
+
+    if (
+      providerIds !== undefined &&
+      !(
+        Array.isArray(providerIds) &&
+        providerIds.every((id: unknown) => typeof id === 'string')
+      )
+    ) {
+      res
+        .status(400)
+        .json({ error: 'providerIds must be an array of strings' });
       return;
     }
 
