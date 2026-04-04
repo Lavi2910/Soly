@@ -20,7 +20,7 @@ router.post('/appointments', authenticate, async (req, res) => {
       res.status(404).json({ error: 'Service not found' });
       return;
     }
-    const isProvider = service.providers.some((p) => p.id == providerId);
+    const isProvider = service.providers.some((p) => p.id === providerId);
     if (!isProvider) {
       res
         .status(404)
@@ -101,11 +101,9 @@ router.put('/appointments/:id', authenticate, async (req, res) => {
     }
 
     if (isCustomer && status && status != 'CANCELED') {
-      res
-        .status(403)
-        .json({
-          error: 'Customers can only cancel or reschedule appointments',
-        });
+      res.status(403).json({
+        error: 'Customers can only cancel or reschedule appointments',
+      });
       return;
     }
 

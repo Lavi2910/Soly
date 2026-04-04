@@ -68,7 +68,7 @@ router.put('/businesses/:id', authenticate, async (req, res) => {
       return;
     }
 
-    if (business.ownerId != userId) {
+    if (business.ownerId !== userId) {
       res.status(403).json({ error: 'Forbidden' });
       return;
     }

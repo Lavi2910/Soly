@@ -35,7 +35,7 @@ router.post('/services', authenticate, async (req, res) => {
       return;
     }
 
-    if (business.ownerId != userId) {
+    if (business.ownerId !== userId) {
       res.status(403).json({ error: 'Forbidden' });
       return;
     }
@@ -97,7 +97,7 @@ router.delete('/services/:id', authenticate, async (req, res) => {
       return;
     }
 
-    if (userId != business.ownerId) {
+    if (userId !== business.ownerId) {
       res.status(403).json({ error: 'Forbidden' });
       return;
     }
@@ -140,7 +140,7 @@ router.put('/services/:id', authenticate, async (req, res) => {
       return;
     }
 
-    if (business.ownerId != userId) {
+    if (business.ownerId !== userId) {
       res.status(403).json({ error: 'Forbidden' });
       return;
     }
