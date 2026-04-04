@@ -13,8 +13,12 @@ export function generateToken(userId: string): string {
 
 export function verifyToken(token: string): { userId: string } {
   const decoded = jwt.verify(token, JWT_SECRET);
-  if (typeof decoded === 'string' || !('userId' in decoded)) {
+  if (
+    typeof decoded !== 'object' ||
+    decoded === null ||
+    typeof (decoded as jwt.JwtPayload).userId !== 'string'
+  ) {
     throw new Error('Invalid token payload');
   }
-  return decoded as { userId: string };
+  return { userId: (decoded as jwt.JwtPayload).userId as string };
 }
