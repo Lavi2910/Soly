@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { verifyToken } from '../utils/jwt';
+import { verifyToken } from '../utils/jwt.js';
 import jwt from 'jsonwebtoken';
 
 export const authenticate = async (
@@ -8,19 +8,22 @@ export const authenticate = async (
   next: NextFunction,
 ) => {
   try {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
-      res.status(401).json({ error: 'Cannot find the token' });
+    const authHeader = req.headers.authorization;
+    const [scheme, token] = authHeader?.split(' ') ?? [];
+    if (scheme?.toLowerCase() !== 'bearer' || !token) {
+      res.status(401).json({ error: 'Invalid or missing token' });
       return;
     }
     const decoded = verifyToken(token);
     req.userId = decoded.userId;
     next();
   } catch (error) {
-    if (
+    const isAuthError =
       error instanceof jwt.JsonWebTokenError ||
-      error instanceof jwt.TokenExpiredError
-    ) {
+      error instanceof jwt.TokenExpiredError ||
+      (error instanceof Error && error.message === 'Invalid token payload');
+
+    if (isAuthError) {
       res.status(401).json({ error: 'Invalid token' });
       return;
     }
