@@ -43,7 +43,7 @@ router.post('/login', async (req, res) => {
 
     const user = await prisma.user.findUnique({ where: { phoneNumber } });
     if (!user) {
-      res.status(401).json({ error: 'User not found' });
+      res.status(401).json({ error: 'Invalid credentials' });
       return;
     }
 
