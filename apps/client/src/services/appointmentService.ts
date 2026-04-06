@@ -1,5 +1,7 @@
 import api from './api';
 
+import { type Status } from '@soly/shared/src/types';
+
 export async function bookAppointment(
   time: Date,
   providerId: string,
@@ -20,7 +22,7 @@ export async function getAppointments() {
 
 export async function updateAppointment(
   id: string,
-  data: { status?: string; time?: Date },
+  data: { status?: Status; time?: Date },
 ) {
   const response = await api.put('/appointments/' + id, data);
   return response.data;

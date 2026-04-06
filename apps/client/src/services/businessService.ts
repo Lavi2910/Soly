@@ -9,5 +9,3 @@ export async function getBusiness(id: string) {
   const response = await api.get('/businesses/' + id);
   return response.data;
 }
-
-export async function createBusiness() {}
