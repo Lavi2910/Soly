@@ -5,6 +5,24 @@ import { generateToken } from '../utils/jwt.js';
 
 const router: IRouter = Router();
 
+function sanitizeUser(user: {
+  id: string;
+  name: string;
+  phoneNumber: string;
+  role: string;
+  createdAt: Date;
+  updatedAt: Date;
+}) {
+  return {
+    id: user.id,
+    name: user.name,
+    phoneNumber: user.phoneNumber,
+    role: user.role,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  };
+}
+
 router.post('/register', async (req, res) => {
   try {
     const { password, phoneNumber, name } = req.body;
@@ -27,17 +45,9 @@ router.post('/register', async (req, res) => {
       data: { phoneNumber, name, password: hashedPassword },
     });
 
-    const userWithoutPassword = {
-      id: newUser.id,
-      name: newUser.name,
-      phoneNumber: newUser.phoneNumber,
-      role: newUser.role,
-      createdAt: newUser.createdAt,
-      updatedAt: newUser.updatedAt,
-    };
     res
       .status(201)
-      .json({ token: generateToken(newUser.id), user: userWithoutPassword });
+      .json({ token: generateToken(newUser.id), user: sanitizeUser(newUser) });
   } catch {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -63,15 +73,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    const userWithoutPassword = {
-      id: user.id,
-      name: user.name,
-      phoneNumber: user.phoneNumber,
-      role: user.role,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    };
-    res.json({ token: generateToken(user.id), user: userWithoutPassword });
+    res.json({ token: generateToken(user.id), user: sanitizeUser(user) });
   } catch {
     res.status(500).json({ error: 'Internal server error' });
   }
