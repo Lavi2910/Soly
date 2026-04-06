@@ -5,6 +5,20 @@ import { generateToken } from '../utils/jwt.js';
 
 const router: IRouter = Router();
 
+function sanitizeUser(user: {
+  id: string;
+  name: string;
+  phoneNumber: string;
+  role: string;
+}) {
+  return {
+    id: user.id,
+    name: user.name,
+    phoneNumber: user.phoneNumber,
+    role: user.role,
+  };
+}
+
 router.post('/register', async (req, res) => {
   try {
     const { password, phoneNumber, name } = req.body;
@@ -27,7 +41,9 @@ router.post('/register', async (req, res) => {
       data: { phoneNumber, name, password: hashedPassword },
     });
 
-    res.status(201).json({ token: generateToken(newUser.id) });
+    res
+      .status(201)
+      .json({ token: generateToken(newUser.id), user: sanitizeUser(newUser) });
   } catch {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -53,7 +69,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    res.json({ token: generateToken(user.id) });
+    res.json({ token: generateToken(user.id), user: sanitizeUser(user) });
   } catch {
     res.status(500).json({ error: 'Internal server error' });
   }
