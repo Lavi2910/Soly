@@ -27,7 +27,17 @@ router.post('/register', async (req, res) => {
       data: { phoneNumber, name, password: hashedPassword },
     });
 
-    res.status(201).json({ token: generateToken(newUser.id) });
+    const userWithoutPassword = {
+      id: newUser.id,
+      name: newUser.name,
+      phoneNumber: newUser.phoneNumber,
+      role: newUser.role,
+      createdAt: newUser.createdAt,
+      updatedAt: newUser.updatedAt,
+    };
+    res
+      .status(201)
+      .json({ token: generateToken(newUser.id), user: userWithoutPassword });
   } catch {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -53,7 +63,15 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    res.json({ token: generateToken(user.id) });
+    const userWithoutPassword = {
+      id: user.id,
+      name: user.name,
+      phoneNumber: user.phoneNumber,
+      role: user.role,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
+    res.json({ token: generateToken(user.id), user: userWithoutPassword });
   } catch {
     res.status(500).json({ error: 'Internal server error' });
   }
