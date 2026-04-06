@@ -10,16 +10,12 @@ function sanitizeUser(user: {
   name: string;
   phoneNumber: string;
   role: string;
-  createdAt: Date;
-  updatedAt: Date;
 }) {
   return {
     id: user.id,
     name: user.name,
     phoneNumber: user.phoneNumber,
     role: user.role,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
   };
 }
 
