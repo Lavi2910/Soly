@@ -14,4 +14,8 @@ export const getMenuStyle = (token: GlobalToken): CSSProperties => ({
   width: '2.7rem',
   height: '2.7rem',
   boxShadow: token.boxShadowSecondary,
+  border: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });

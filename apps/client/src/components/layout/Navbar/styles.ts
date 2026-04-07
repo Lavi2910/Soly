@@ -47,6 +47,12 @@ export const closeIconStyle: CSSProperties = {
   cursor: 'pointer',
   width: 22,
   height: 22,
+  background: 'none',
+  border: 'none',
+  padding: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
 export const iconStyle: CSSProperties = {
@@ -83,9 +89,3 @@ export const dividerStyle: CSSProperties = {
 export const logoutSectionStyle: CSSProperties = {
   marginTop: 'auto',
 };
-
-export const getLogoutColor = (token: GlobalToken) => token.colorError;
-
-export const getLogoutItemStyle = (token: GlobalToken): CSSProperties => ({
-  color: getLogoutColor(token),
-});

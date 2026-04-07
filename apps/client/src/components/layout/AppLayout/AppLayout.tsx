@@ -18,7 +18,9 @@ export const AppLayout = () => {
   }
   return (
     <>
-      <Menu onClick={openMenu} style={styles.getMenuStyle(token)} />
+      <button onClick={openMenu} style={styles.getMenuStyle(token)}>
+        <Menu style={{ color: 'inherit' }} />
+      </button>
       <NavBar isOpen={isOpen} onClose={onClose} />
       <Outlet />
     </>

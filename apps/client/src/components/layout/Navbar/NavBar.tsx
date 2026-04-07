@@ -23,7 +23,13 @@ export const NavBar = ({ isOpen, onClose }: NavBarProps) => {
     >
       <div style={styles.drawerHeaderStyle}>
         <img src={LogoWide} alt="Soly" style={styles.logoStyle} />
-        <X onClick={onClose} style={styles.closeIconStyle} />
+        <button
+          onClick={onClose}
+          style={styles.closeIconStyle}
+          aria-label="סגור תפריט"
+        >
+          <X style={{ color: 'inherit' }} />
+        </button>
       </div>
       <UserGreeting />
       <NavMenuItems onClose={onClose} />

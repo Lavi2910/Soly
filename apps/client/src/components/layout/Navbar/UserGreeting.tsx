@@ -6,10 +6,10 @@ export const UserGreeting = () => {
   return (
     <SolyCard variant="outlined" style={styles.userGreetingCardStyle}>
       <div style={styles.userGreetingContainer}>
-        <SolyAvatar variant="medium" name={user?.name ?? 'אורח'} />
+        <SolyAvatar variant="medium" name={user?.name || 'אורח'} />
         <div style={styles.userGreetingTextBox}>
           <SolyTypography variant="sectionTitle">
-            {`היי, ${user?.name ?? 'אורח'}`}
+            {`היי, ${user?.name || 'אורח'}`}
           </SolyTypography>
           <SolyTypography variant="caption">
             {'ברוכים הבאים ל-Soly'}
