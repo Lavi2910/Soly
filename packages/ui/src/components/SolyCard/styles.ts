@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { GlobalToken } from 'antd';
-import { colors } from '../../../constants/colors';
+import { colors } from '@soly/shared';
 
 export type SolyCardVariant = 'outlined' | 'white' | 'gradient';
 

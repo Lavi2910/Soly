@@ -5,7 +5,7 @@ import {
   SolyAvatar,
   SolyTag,
   SolyRating,
-} from '@soly/shared';
+} from '@soly/ui';
 
 const Home = () => {
   return (

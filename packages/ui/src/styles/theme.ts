@@ -1,5 +1,5 @@
 import type { ThemeConfig } from 'antd';
-import { colors } from '../constants/colors';
+import { colors } from '@soly/shared';
 
 const solyTheme: ThemeConfig = {
   token: {

@@ -1,13 +1,12 @@
 // Constants
 export { colors } from './constants/colors';
 
-// Theme
-export { default as solyTheme } from './styles/theme';
+// Stores
+export { default as useAuthStore } from './stores/authStore';
 
-// Components
-export { SolyAvatar } from './components/ui/SolyAvatar/SolyAvatar';
-export { SolyButton } from './components/ui/SolyButton/SolyButton';
-export { SolyCard } from './components/ui/SolyCard/SolyCard';
-export { SolyRating } from './components/ui/SolyRate/SolyRating';
-export { SolyTag } from './components/ui/SolyTag/SolyTag';
-export { SolyTypography } from './components/ui/SolyTypography/SolyTypography';
+// Assets
+export { default as LogoWide } from './assets/LogoWide.png';
+export { default as Logo } from './assets/Logo.png';
+
+// Types
+export type { Status, Role, User } from './types/index';

@@ -108,12 +108,18 @@ importers:
       '@soly/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@soly/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       antd:
         specifier: ^6.3.5
         version: 6.3.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       axios:
         specifier: ^1.14.0
         version: 1.14.0
+      lucide-react:
+        specifier: ^1.7.0
+        version: 1.7.0(react@19.2.4)
       react:
         specifier: ^19.2.4
         version: 19.2.4
@@ -166,6 +172,9 @@ importers:
       '@soly/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@soly/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       antd:
         specifier: ^6.3.5
         version: 6.3.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -212,6 +221,31 @@ importers:
       zustand:
         specifier: ^5.0.12
         version: 5.0.12(@types/react@19.2.14)(react@19.2.4)
+    devDependencies:
+      '@ant-design/icons':
+        specifier: ^6.1.1
+        version: 6.1.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      antd:
+        specifier: ^6.3.5
+        version: 6.3.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
+
+  packages/ui:
+    dependencies:
+      '@soly/shared':
+        specifier: workspace:*
+        version: link:../shared
     devDependencies:
       '@ant-design/icons':
         specifier: ^6.1.1
@@ -2264,6 +2298,11 @@ packages:
   lru.min@1.1.4:
     resolution: {integrity: sha512-DqC6n3QQ77zdFpCMASA1a3Jlb64Hv2N2DciFGkO/4L9+q/IpIAuRlKOvCXabtRW6cQf8usbmM6BE/TOPysCdIA==}
     engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
+
+  lucide-react@1.7.0:
+    resolution: {integrity: sha512-yI7BeItCLZJTXikmK4KNUGCKoGzSvbKlfCvw44bU4fXAL6v3gYS4uHD1jzsLkfwODYwI6Drw5Tu9Z5ulDe0TSg==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -5181,6 +5220,10 @@ snapshots:
       yallist: 3.1.1
 
   lru.min@1.1.4: {}
+
+  lucide-react@1.7.0(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   math-intrinsics@1.1.0: {}
 
