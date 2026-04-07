@@ -31,17 +31,11 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Type check (client)
-        run: pnpm --filter @soly/client typecheck
+      - name: Type check (web)
+        run: pnpm --filter @soly/web typecheck
 
-      - name: Type check (provider)
-        run: pnpm --filter @soly/provider typecheck
-
-      - name: Build client
-        run: pnpm --filter @soly/client build
-
-      - name: Build provider
-        run: pnpm --filter @soly/provider build
+      - name: Build web
+        run: pnpm --filter @soly/web build
       
       - name: Generate Prisma client
         run: pnpm --filter @soly/backend db:generate
