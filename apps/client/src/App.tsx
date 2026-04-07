@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import { solyTheme } from '@soly/shared';
+import { solyTheme } from '@soly/ui';
 import Home from '@/pages/Home';
 import useAuthStore from '@soly/shared/src/stores/authStore';
 import { useEffect } from 'react';
+import { AppLayout } from './components/layout/AppLayout/AppLayout';
 
 function App() {
   const initialize = useAuthStore((state) => state.initialize);
@@ -15,7 +16,9 @@ function App() {
   return (
     <ConfigProvider theme={solyTheme}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Home />} />
+        </Route>
       </Routes>
     </ConfigProvider>
   );

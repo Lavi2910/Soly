@@ -1,6 +1,6 @@
 import type { GlobalToken } from 'antd';
 import type { CSSProperties } from 'react';
-import { colors } from '../../../constants/colors';
+import { colors } from '@soly/shared';
 
 export type SolyButtonVariant = 'outlined' | 'gradient' | 'white';
 

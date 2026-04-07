@@ -17,6 +17,7 @@
     "@ant-design/icons": "^6.1.1",
     "@capacitor/core": "^8.3.0",
     "@soly/shared": "workspace:*",
+    "@soly/ui": "workspace:*",
     "antd": "^6.3.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
