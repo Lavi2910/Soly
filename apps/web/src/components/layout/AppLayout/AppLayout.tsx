@@ -17,12 +17,13 @@ export const AppLayout = () => {
     setIsOpen(true);
   }
   return (
-    <>
+    <div>
+      <div style={styles.getFixedBackgroundStyle(token)} />
       <button onClick={openMenu} style={styles.getMenuStyle(token)}>
         <Menu style={{ color: 'inherit' }} />
       </button>
       <NavBar isOpen={isOpen} onClose={onClose} />
       <Outlet />
-    </>
+    </div>
   );
 };

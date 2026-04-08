@@ -21,14 +21,20 @@ function sanitizeUser(user: {
 
 router.post('/register', async (req, res) => {
   try {
-    const { password, phoneNumber, name } = req.body;
-
-    if (!password || !phoneNumber || !name) {
+    const { password, phoneNumber, name, role } = req.body;
+    const allowedRoles = ['CUSTOMER', 'PROVIDER'];
+    if (!allowedRoles.includes(role)) {
+      res.status(400).json({ error: 'Invalid role' });
+      return;
+    }
+    if (!password || !phoneNumber || !name || !role) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
     }
 
-    const existing = await prisma.user.findUnique({ where: { phoneNumber } });
+    const existing = await prisma.user.findUnique({
+      where: { phoneNumber_role: { phoneNumber, role } },
+    });
     if (existing) {
       res
         .status(409)
@@ -38,7 +44,7 @@ router.post('/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
-      data: { phoneNumber, name, password: hashedPassword },
+      data: { phoneNumber, name, password: hashedPassword, role },
     });
 
     res
@@ -51,13 +57,20 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { phoneNumber, password } = req.body;
-    if (!password || !phoneNumber) {
+    const { phoneNumber, password, role } = req.body;
+    const allowedRoles = ['CUSTOMER', 'PROVIDER'];
+    if (!allowedRoles.includes(role)) {
+      res.status(400).json({ error: 'Invalid role' });
+      return;
+    }
+    if (!password || !phoneNumber || !role) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
     }
 
-    const user = await prisma.user.findUnique({ where: { phoneNumber } });
+    const user = await prisma.user.findUnique({
+      where: { phoneNumber_role: { phoneNumber, role } },
+    });
     if (!user) {
       res.status(401).json({ error: 'Invalid credentials' });
       return;
