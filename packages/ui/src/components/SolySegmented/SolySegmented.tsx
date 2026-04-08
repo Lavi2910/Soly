@@ -1,7 +1,7 @@
 import { theme } from 'antd';
 import { SolyTypography } from '../SolyTypography/SolyTypography';
 import * as styles from './styles';
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
 interface SolySegmentedProps {
   options: { label: string; value: string }[];
@@ -17,7 +17,10 @@ export const SolySegmented = ({
   onChange,
 }: SolySegmentedProps) => {
   const { token } = theme.useToken();
-  const selectedIndex = options.findIndex((o) => o.value === value);
+  const selectedIndex = Math.max(
+    0,
+    options.findIndex((o) => o.value === value),
+  );
 
   return (
     <div style={{ ...styles.getContainerStyle(token), ...style }}>
@@ -28,7 +31,12 @@ export const SolySegmented = ({
         <div
           key={option.value}
           style={styles.itemWrapperStyle}
+          role="button"
+          tabIndex={0}
           onClick={() => onChange(option.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') onChange(option.value);
+          }}
         >
           <SolyTypography
             variant="body"

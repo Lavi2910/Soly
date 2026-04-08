@@ -1,4 +1,4 @@
-import { Logo } from '@soly/shared';
+import { Logo, type Role } from '@soly/shared';
 import { theme } from 'antd';
 import { SolyTypography, SolyButton, SolyPoweredBy } from '@soly/ui';
 import * as styles from './styles';
@@ -11,7 +11,7 @@ export default function LoginPage() {
   const { token } = theme.useToken();
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('customer');
+  const [role, setRole] = useState<Role>('CUSTOMER');
   const { handleLogin, loading, error } = useLogin();
 
   return (

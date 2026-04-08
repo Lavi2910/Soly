@@ -8,13 +8,11 @@ interface SolyPoweredByProps {
 
 export const SolyPoweredBy = ({ style }: SolyPoweredByProps) => {
   return (
-    <>
-      <div style={{ ...styles.poweredByDivStyle, ...style }}>
-        <SolyTypography variant="body">{'מופעל על ידי'}</SolyTypography>
-        <SolyTypography variant="body" style={styles.solyTextStyle()}>
-          {'Soly'}
-        </SolyTypography>
-      </div>
-    </>
+    <div style={{ ...styles.poweredByDivStyle, ...style }}>
+      <SolyTypography variant="body">{'מופעל על ידי'}</SolyTypography>
+      <SolyTypography variant="body" style={styles.solyTextStyle}>
+        {'Soly'}
+      </SolyTypography>
+    </div>
   );
 };

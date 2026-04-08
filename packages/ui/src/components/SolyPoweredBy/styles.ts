@@ -7,12 +7,10 @@ export const poweredByDivStyle: CSSProperties = {
   gap: '0.4rem',
 };
 
-export const solyTextStyle = (): CSSProperties => {
-  return {
-    background: colors.gradientPrimary,
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    fontWeight: 600,
-  };
+export const solyTextStyle: CSSProperties = {
+  background: colors.gradientPrimary,
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+  fontWeight: 600,
 };

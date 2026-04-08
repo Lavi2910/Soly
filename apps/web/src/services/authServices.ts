@@ -1,11 +1,8 @@
+import type { Role } from '@soly/shared';
 import api from './api';
 import useAuthStore from '@soly/shared/src/stores/authStore';
 
-export async function login(
-  phoneNumber: string,
-  password: string,
-  role: string,
-) {
+export async function login(phoneNumber: string, password: string, role: Role) {
   const response = await api.post('/auth/login', {
     phoneNumber,
     password,
@@ -20,7 +17,7 @@ export async function register(
   name: string,
   phoneNumber: string,
   password: string,
-  role: string,
+  role: Role,
 ) {
   const response = await api.post('/auth/register', {
     name,

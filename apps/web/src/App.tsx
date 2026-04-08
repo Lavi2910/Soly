@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import { solyTheme } from '@soly/ui';
 import { useAuthStore } from '@soly/shared';
@@ -19,8 +19,11 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route element={<AppLayout />}>
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/provider" element={<div>Provider Dashboard</div>} />
         </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </ConfigProvider>
   );

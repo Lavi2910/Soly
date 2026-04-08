@@ -1,4 +1,4 @@
-import { InputProps as AntdsInputProps, Input } from 'antd';
+import { type InputProps as AntdsInputProps, Input } from 'antd';
 import { CSSProperties } from 'react';
 import * as styles from './styles';
 import { theme } from 'antd';
@@ -22,7 +22,7 @@ export const SolyInput = ({
   if (variant === 'password') {
     return (
       <Input.Password
-        placeholder="סיסמה"
+        placeholder={placeholder ?? 'סיסמה'}
         variant="outlined"
         style={{ ...styles.inputStyle(token), ...style }}
         {...props}

@@ -1,9 +1,10 @@
 import { SolySegmented, SolyTypography } from '@soly/ui';
 import * as styles from './styles';
+import type { Role } from '@soly/shared';
 
 interface RoleSelectorProps {
-  onChange: (role: string) => void;
-  role: string;
+  onChange: (role: Role) => void;
+  role: Role;
 }
 
 export const RoleSelector = ({ onChange, role }: RoleSelectorProps) => {
@@ -11,7 +12,7 @@ export const RoleSelector = ({ onChange, role }: RoleSelectorProps) => {
     <>
       <SolySegmented
         value={role}
-        onChange={onChange}
+        onChange={(value) => onChange(value as Role)}
         options={[
           { label: 'לקוח', value: 'CUSTOMER' },
           { label: 'נותן שירות', value: 'PROVIDER' },

@@ -1,6 +1,5 @@
-import { SolyInput } from '@soly/ui';
+import { SolyInput, SolyTypography } from '@soly/ui';
 import * as styles from './styles';
-import { SolyTypography } from '@soly/ui';
 import { ForgotPassword } from './ForgotPassword';
 
 interface LoginInputsProps {

@@ -22,7 +22,11 @@ function sanitizeUser(user: {
 router.post('/register', async (req, res) => {
   try {
     const { password, phoneNumber, name, role } = req.body;
-
+    const allowedRoles = ['CUSTOMER', 'PROVIDER'];
+    if (!allowedRoles.includes(role)) {
+      res.status(400).json({ error: 'Invalid role' });
+      return;
+    }
     if (!password || !phoneNumber || !name || !role) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
@@ -54,7 +58,12 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { phoneNumber, password, role } = req.body;
-    if (!password || !phoneNumber) {
+    const allowedRoles = ['CUSTOMER', 'PROVIDER'];
+    if (!allowedRoles.includes(role)) {
+      res.status(400).json({ error: 'Invalid role' });
+      return;
+    }
+    if (!password || !phoneNumber || !role) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
     }
