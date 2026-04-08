@@ -14,6 +14,7 @@ export const getButtonStyles = (
     backgroundColor: token.colorBgContainer,
     borderColor: token.colorBorder,
     boxShadow: token.boxShadow,
+    borderRadius: '15px',
   },
   outlined: {
     display: 'flex',
@@ -22,13 +23,16 @@ export const getButtonStyles = (
     backgroundColor: token.colorPrimaryBg,
     borderColor: token.colorPrimary,
     boxShadow: token.boxShadow,
+    borderRadius: '15px',
   },
   gradient: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     background: colors.gradientPrimary,
+    border: 'none',
     boxShadow: token.boxShadowSecondary,
     color: token.colorBgContainer,
+    borderRadius: '15px',
   },
 });

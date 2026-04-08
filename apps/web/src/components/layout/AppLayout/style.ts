@@ -1,6 +1,13 @@
 import type { CSSProperties } from 'react';
 import { type GlobalToken } from 'antd';
 
+export const getFixedBackgroundStyle = (token: GlobalToken): CSSProperties => ({
+  position: 'fixed',
+  inset: 0,
+  zIndex: -1,
+  backgroundColor: token.colorBgLayout,
+});
+
 export const getMenuStyle = (token: GlobalToken): CSSProperties => ({
   position: 'fixed',
   top: 16,

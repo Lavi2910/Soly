@@ -5,9 +5,12 @@ import {
   SolyAvatar,
   SolyTag,
   SolyRating,
+  SolySegmented,
 } from '@soly/ui';
+import { useState } from 'react';
 
 export const HomePage = () => {
+  const [role, setRole] = useState('customer');
   return (
     <>
       <SolyTypography variant="heroTitle">בדיקה</SolyTypography>
@@ -43,6 +46,15 @@ export const HomePage = () => {
       </SolyTag>
 
       <SolyRating disabled value={4.8} />
+
+      <SolySegmented
+        value={role}
+        onChange={setRole}
+        options={[
+          { label: 'לקוח', value: 'customer' },
+          { label: 'נותן שירות', value: 'provider' },
+        ]}
+      />
     </>
   );
 };
