@@ -1,5 +1,5 @@
 import { colors } from '@soly/shared';
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
 export const poweredByDivStyle: CSSProperties = {
   display: 'flex',

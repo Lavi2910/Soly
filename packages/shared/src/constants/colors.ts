@@ -2,7 +2,8 @@ export const colors = {
   primary: '#6366f1',
   primaryLight: '#818cf8',
   primaryDark: '#4f46e5',
-  gradientPrimary: 'linear-gradient(to right, #7c3aed, #db2777, #f97316)',
+  gradientPrimary:
+    'linear-gradient(135deg, #7C3AED 0%, #EC4899 55%, #F97316 100%)',
   white: '#ffffff',
   background: '#f8fafc',
   text: '#1e293b',

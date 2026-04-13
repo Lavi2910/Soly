@@ -1,19 +1,20 @@
-import { Logo } from '@soly/shared';
-import { theme } from 'antd';
-import { SolyTypography, SolyButton, SolyPoweredBy } from '@soly/ui';
-import * as styles from './styles';
-import { RoleSelector } from './RoleSelector';
-import { LoginInputs } from './LoginInputs';
 import { useState } from 'react';
-import { useLogin } from '@/hooks/useLogin';
+import { theme } from 'antd';
+import { Logo } from '@soly/shared';
+import * as styles from './styles';
+import { RegisterInputs } from './RegisterInputs';
+import { SolyTypography, SolyPoweredBy, SolyButton } from '@soly/ui';
+import { useRegister } from '@/hooks/useRegister';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const { token } = theme.useToken();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'CUSTOMER' | 'PROVIDER'>('CUSTOMER');
-  const { handleLogin, loading, error } = useLogin();
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const { handleRegister, loading, error } = useRegister();
   const navigate = useNavigate();
 
   return (
@@ -22,21 +23,28 @@ export default function LoginPage() {
         style={styles.pageBody}
         onKeyDown={(e) => {
           if (e.key === 'Enter')
-            handleLogin(
+            handleRegister(
+              firstName,
+              lastName,
               phone,
               password,
-              role === 'CUSTOMER' ? '/home' : '/provider',
+              confirmPassword,
             );
         }}
       >
         <img src={Logo} alt="Soly Logo" style={styles.logoStyle} />
         <div style={styles.containerStyle(token)}>
-          <RoleSelector role={role} onChange={setRole} />
-          <LoginInputs
+          <RegisterInputs
+            firstName={firstName}
+            lastName={lastName}
             phone={phone}
             password={password}
+            confirmPassword={confirmPassword}
+            onFirstNameChange={setFirstName}
+            onLastNameChange={setLastName}
             onPasswordChange={setPassword}
             onPhoneChange={setPhone}
+            onConfirmPasswordChange={setConfirmPassword}
           />
           {error && (
             <SolyTypography variant="caption" style={styles.errorStyle(token)}>
@@ -48,24 +56,26 @@ export default function LoginPage() {
             variant="gradient"
             style={styles.getButtonStyle(token)}
             onClick={() =>
-              handleLogin(
+              handleRegister(
+                firstName,
+                lastName,
                 phone,
                 password,
-                role === 'CUSTOMER' ? '/home' : '/provider',
+                confirmPassword,
               )
             }
             loading={loading}
           >
             <SolyTypography variant="body" color="white">
-              {'כניסה'}
+              {'הרשמה'}
             </SolyTypography>
           </SolyButton>
         </div>
-        <div style={styles.noUserStyle}>
-          <SolyTypography variant="body">{'אין לך חשבון?'}</SolyTypography>
-          <div onClick={() => navigate('/register')}>
-            <SolyTypography variant="body" style={styles.registerStyle(token)}>
-              {'הרשמה'}
+        <div style={styles.hasUserStyle}>
+          <SolyTypography variant="body">{'יש לך חשבון?'}</SolyTypography>
+          <div onClick={() => navigate('/login')}>
+            <SolyTypography variant="body" style={styles.loginStyle(token)}>
+              {'התחברות'}
             </SolyTypography>
           </div>
         </div>

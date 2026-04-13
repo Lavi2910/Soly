@@ -7,33 +7,29 @@ const router: IRouter = Router();
 
 function sanitizeUser(user: {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   phoneNumber: string;
-  role: string;
 }) {
   return {
     id: user.id,
-    name: user.name,
+    firstName: user.firstName,
+    lastName: user.lastName,
     phoneNumber: user.phoneNumber,
-    role: user.role,
   };
 }
 
 router.post('/register', async (req, res) => {
   try {
-    const { password, phoneNumber, name, role } = req.body;
-    const allowedRoles = ['CUSTOMER', 'PROVIDER'];
-    if (!allowedRoles.includes(role)) {
-      res.status(400).json({ error: 'Invalid role' });
-      return;
-    }
-    if (!password || !phoneNumber || !name || !role) {
+    const { password, phoneNumber, firstName, lastName } = req.body;
+
+    if (!password || !phoneNumber || !firstName || !lastName) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
     }
 
     const existing = await prisma.user.findUnique({
-      where: { phoneNumber_role: { phoneNumber, role } },
+      where: { phoneNumber },
     });
     if (existing) {
       res
@@ -44,7 +40,7 @@ router.post('/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
-      data: { phoneNumber, name, password: hashedPassword, role },
+      data: { phoneNumber, firstName, lastName, password: hashedPassword },
     });
 
     res
@@ -57,19 +53,15 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { phoneNumber, password, role } = req.body;
-    const allowedRoles = ['CUSTOMER', 'PROVIDER'];
-    if (!allowedRoles.includes(role)) {
-      res.status(400).json({ error: 'Invalid role' });
-      return;
-    }
-    if (!password || !phoneNumber || !role) {
+    const { phoneNumber, password } = req.body;
+
+    if (!password || !phoneNumber) {
       res.status(400).json({ error: 'Missing required fields' });
       return;
     }
 
     const user = await prisma.user.findUnique({
-      where: { phoneNumber_role: { phoneNumber, role } },
+      where: { phoneNumber },
     });
     if (!user) {
       res.status(401).json({ error: 'Invalid credentials' });
