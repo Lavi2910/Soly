@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 import { SolyTypography } from '../SolyTypography/SolyTypography';
 import * as styles from './styles';
 

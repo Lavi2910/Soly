@@ -1,5 +1,5 @@
-import { GlobalToken } from 'antd';
-import { CSSProperties } from 'react';
+import { type GlobalToken } from 'antd';
+import { type CSSProperties } from 'react';
 
 export const inputStyle = (token: GlobalToken): CSSProperties => {
   return {

@@ -1,9 +1,9 @@
 export type Status = 'CONFIRMED' | 'COMPLETED' | 'CANCELED' | 'NOSHOW';
-export type Role = 'CUSTOMER' | 'PROVIDER' | 'ADMIN';
+export type Role = 'CUSTOMER' | 'PROVIDER';
 
 export interface User {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   phoneNumber: string;
-  role: Role;
 }

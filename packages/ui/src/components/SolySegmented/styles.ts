@@ -1,6 +1,6 @@
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 import { colors } from '@soly/shared';
-import { GlobalToken } from 'antd';
+import { type GlobalToken } from 'antd';
 
 export const getContainerStyle = (token: GlobalToken): CSSProperties => ({
   display: 'flex',

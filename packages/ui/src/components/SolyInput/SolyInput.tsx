@@ -1,5 +1,5 @@
 import { type InputProps as AntdsInputProps, Input } from 'antd';
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 import * as styles from './styles';
 import { theme } from 'antd';
 
