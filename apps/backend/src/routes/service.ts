@@ -57,7 +57,6 @@ router.post('/services', authenticate, async (req, res) => {
       const validProviders = await prisma.user.findMany({
         where: {
           id: { in: providerIds },
-          role: 'PROVIDER',
           worksAtId: businessId,
         },
       });
@@ -186,7 +185,6 @@ router.put('/services/:id', authenticate, async (req, res) => {
       const validProviders = await prisma.user.findMany({
         where: {
           id: { in: providerIds },
-          role: 'PROVIDER',
           worksAtId: service.businessId,
         },
       });
