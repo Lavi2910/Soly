@@ -26,7 +26,7 @@ export const useRegister = () => {
     setError('');
     try {
       await register(firstName, lastName, phone, password);
-      navigate('/login');
+      navigate('/home');
     } catch {
       setError('מספר טלפון קיים במערכת');
     } finally {

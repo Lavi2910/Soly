@@ -8,7 +8,7 @@ export const UserGreeting = () => {
       <div style={styles.userGreetingContainer}>
         <SolyAvatar
           variant="medium"
-          name={user ? `${user.firstName} ${user.lastName}` : 'אורח'}
+          name={user ? `${user.firstName} ${user.lastName}`.trim() : 'אורח'}
         />
         <div style={styles.userGreetingTextBox}>
           <SolyTypography variant="sectionTitle">

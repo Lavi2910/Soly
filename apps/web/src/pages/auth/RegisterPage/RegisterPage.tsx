@@ -22,7 +22,7 @@ export default function RegisterPage() {
       <div
         style={styles.pageBody}
         onKeyDown={(e) => {
-          if (e.key === 'Enter')
+          if (e.key === 'Enter' && !loading)
             handleRegister(
               firstName,
               lastName,
@@ -73,7 +73,7 @@ export default function RegisterPage() {
         </div>
         <div style={styles.hasUserStyle}>
           <SolyTypography variant="body">{'יש לך חשבון?'}</SolyTypography>
-          <div onClick={() => navigate('/login')}>
+          <div role="button" tabIndex={0} onClick={() => navigate('/login')}>
             <SolyTypography variant="body" style={styles.loginStyle(token)}>
               {'התחברות'}
             </SolyTypography>
