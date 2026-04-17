@@ -102,7 +102,17 @@ export default function WelcomePage() {
 
       <div style={{ ...styles.loginLinkRow, ...fadeIn(6) }}>
         <SolyTypography variant="body">{'כבר יש לי חשבון —'}</SolyTypography>
-        <div role="button" tabIndex={0} onClick={() => navigate('/login')}>
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/login')}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              navigate('/login');
+            }
+          }}
+        >
           <SolyTypography variant="body" style={styles.loginLink(token)}>
             {'כניסה'}
           </SolyTypography>
