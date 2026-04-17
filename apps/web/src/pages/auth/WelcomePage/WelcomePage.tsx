@@ -61,12 +61,12 @@ export default function WelcomePage() {
 
       <div style={{ ...styles.cardStyle(token), ...fadeIn(2) }}>
         <div style={fadeIn(3)}>
-          <span style={styles.successTag(token)}>{'החשבון נוצר בהצלחה ✓'}</span>
+          <SolyTag variant="highlight">{'החשבון נוצר בהצלחה ✓'}</SolyTag>
         </div>
 
         <div style={fadeIn(3)}>
           <SolyTypography variant="pageTitle">
-            {'!ברוך הבא ל-SOLY 👋'}
+            {'ברוך הבא ל-SOLY!'}
           </SolyTypography>
         </div>
 
@@ -91,31 +91,12 @@ export default function WelcomePage() {
           <SolyButton
             variant="gradient"
             style={styles.ctaButton(token)}
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/login')}
           >
             <SolyTypography variant="body" color="white">
-              {'לדף הבית 🏠'}
+              {'להתחברות'}
             </SolyTypography>
           </SolyButton>
-        </div>
-      </div>
-
-      <div style={{ ...styles.loginLinkRow, ...fadeIn(6) }}>
-        <SolyTypography variant="body">{'כבר יש לי חשבון —'}</SolyTypography>
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => navigate('/login')}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              navigate('/login');
-            }
-          }}
-        >
-          <SolyTypography variant="body" style={styles.loginLink(token)}>
-            {'כניסה'}
-          </SolyTypography>
         </div>
       </div>
 
