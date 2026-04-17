@@ -4,6 +4,7 @@ export const colors = {
   primaryDark: '#4f46e5',
   gradientPrimary:
     'linear-gradient(135deg, #7C3AED 0%, #EC4899 55%, #F97316 100%)',
+  gradientColors: ['#7C3AED', '#EC4899', '#F97316'],
   white: '#ffffff',
   background: '#f8fafc',
   text: '#1e293b',
