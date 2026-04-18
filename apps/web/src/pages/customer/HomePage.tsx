@@ -7,6 +7,8 @@ import {
   SolyRating,
 } from '@soly/ui';
 
+import { BusinessCard } from '@/components/ui/BusinessCard/BusinessCard';
+
 export const HomePage = () => {
   return (
     <>
@@ -43,6 +45,17 @@ export const HomePage = () => {
       </SolyTag>
 
       <SolyRating disabled value={4.8} />
+
+      <BusinessCard
+        name="soly"
+        category="מספרת גברים"
+        location="תל אביב"
+        distance="5km"
+        rating={4.5}
+        reviewCount={11}
+        bannerImage="https://images.squarespace-cdn.com/content/v1/67ab73d8c72b0b3112e60d7f/1739289561594-0NCL1Q930LCVP0HMX7T8/Statement-Barbershop-Interiors-197.jpg"
+        isOpen={true}
+      />
     </>
   );
 };
