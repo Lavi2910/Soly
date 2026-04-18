@@ -1,38 +1,59 @@
-import { SolyDrawer } from '@soly/ui';
-import { X } from 'lucide-react';
-import { LogoWide } from '@soly/shared';
+import { useState } from 'react';
+import { UserRound, Store, Search, Calendar } from 'lucide-react';
+import { theme } from 'antd';
 import * as styles from './styles';
-import { UserGreeting } from './UserGreeting';
-import { NavMenuItems } from './NavMenuItems';
+import { useNavigate } from 'react-router-dom';
 
-interface NavBarProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+const menuItems = [
+  { key: 'profile', icon: UserRound, path: '/profile', label: 'פרופיל' },
+  {
+    key: 'appointments',
+    icon: Calendar,
+    path: '/appointments',
+    label: 'תורים',
+  },
+  { key: 'businesses', icon: Store, path: '/businesses', label: 'עסקים' },
+  { key: 'search', icon: Search, path: '/search', label: 'חיפוש' },
+];
+export const NavBar = () => {
+  const { token } = theme.useToken();
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-export const NavBar = ({ isOpen, onClose }: NavBarProps) => {
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  };
+
+  const itemStyle = (key: string) => ({
+    ...styles.menuItemStyle,
+    ...(activeItem === key ? styles.getMenuItemActiveStyle(token) : {}),
+  });
+
   return (
-    <SolyDrawer
-      closable={false}
-      styles={{
-        wrapper: styles.drawerWrapperStyle,
-        body: styles.drawerBodyStyle,
-      }}
-      open={isOpen}
-      onClose={onClose}
-    >
-      <div style={styles.drawerHeaderStyle}>
-        <img src={LogoWide} alt="Soly" style={styles.logoStyle} />
-        <button
-          onClick={onClose}
-          style={styles.closeIconStyle}
-          aria-label="סגור תפריט"
+    <div style={styles.containerStyle(token)}>
+      {menuItems.map(({ key, icon: Icon, label, path }) => (
+        <div
+          key={key}
+          role="button"
+          tabIndex={0}
+          style={itemStyle(key)}
+          className="menu-item"
+          aria-label={label}
+          onPointerDown={() => setActiveItem(key)}
+          onPointerUp={() => setActiveItem(null)}
+          onPointerLeave={() => setActiveItem(null)}
+          onPointerCancel={() => setActiveItem(null)}
+          onClick={() => handleNavigate(path)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleNavigate(path);
+            }
+          }}
         >
-          <X style={{ color: 'inherit' }} />
-        </button>
-      </div>
-      <UserGreeting />
-      <NavMenuItems onClose={onClose} />
-    </SolyDrawer>
+          <Icon style={styles.iconStyle} />
+        </div>
+      ))}
+    </div>
   );
 };
