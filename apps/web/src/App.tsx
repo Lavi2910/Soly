@@ -8,6 +8,8 @@ import LoginPage from './pages/auth/LoginPage/LoginPage';
 import { HomePage } from './pages/customer/HomePage';
 import RegisterPage from './pages/auth/RegisterPage/RegisterPage';
 import WelcomePage from './pages/auth/WelcomePage/WelcomePage';
+import { PublicRoute } from './components/layout/PublicRoute';
+import { ProtectedRoute } from './components/layout/ProtectedRoute';
 function App() {
   const initialize = useAuthStore((state) => state.initialize);
 
@@ -18,13 +20,16 @@ function App() {
   return (
     <ConfigProvider theme={solyTheme}>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/welcome" element={<WelcomePage />} />
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/provider" element={<div>Provider Dashboard</div>} />
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/welcome" element={<WelcomePage />} />
+          <Route element={<AppLayout />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/provider" element={<div>Provider Dashboard</div>} />
+          </Route>
         </Route>
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
