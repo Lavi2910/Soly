@@ -22,6 +22,7 @@ export const containerStyle = (token: GlobalToken): CSSProperties => ({
   padding: '2rem',
   flexDirection: 'column',
   alignItems: 'center',
+  boxShadow: token.boxShadowTertiary,
 });
 
 export const segmentedStyle: CSSProperties = {
