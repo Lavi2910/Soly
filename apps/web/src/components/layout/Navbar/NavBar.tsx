@@ -45,7 +45,10 @@ export const NavBar = () => {
           onPointerCancel={() => setActiveItem(null)}
           onClick={() => handleNavigate(path)}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') handleNavigate(path);
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleNavigate(path);
+            }
           }}
         >
           <Icon style={styles.iconStyle} />
