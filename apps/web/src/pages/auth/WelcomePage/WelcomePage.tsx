@@ -91,10 +91,10 @@ export default function WelcomePage() {
           <SolyButton
             variant="gradient"
             style={styles.ctaButton(token)}
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/')}
           >
             <SolyTypography variant="body" color="white">
-              {'להתחברות'}
+              {'להמשך לאפליקציה'}
             </SolyTypography>
           </SolyButton>
         </div>
