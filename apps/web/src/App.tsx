@@ -28,6 +28,10 @@ function App() {
           <Route path="/welcome" element={<WelcomePage />} />
           <Route element={<AppLayout />}>
             <Route path="/home" element={<HomePage />} />
+            <Route path="/profile" element={<div>Profile</div>} />
+            <Route path="/appointments" element={<div>Appointments</div>} />
+            <Route path="/businesses" element={<div>Businesses</div>} />
+            <Route path="/search" element={<div>Search</div>} />
             <Route path="/provider" element={<div>Provider Dashboard</div>} />
           </Route>
         </Route>
