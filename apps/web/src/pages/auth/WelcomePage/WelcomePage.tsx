@@ -43,7 +43,7 @@ export default function WelcomePage() {
     <div style={styles.pageBody(token)}>
       <div style={fadeIn(1)}>
         <div style={styles.checkCircle(token)}>
-          <svg viewBox="0 0 52 52" width={64} height={64}>
+          <svg viewBox="0 0 52 52" width={64} height={64} aria-hidden="true">
             <polyline
               points="14,27 22,36 38,17"
               fill="none"
