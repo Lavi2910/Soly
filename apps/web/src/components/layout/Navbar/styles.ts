@@ -30,7 +30,7 @@ export const getLabelStyle = (
   token: GlobalToken,
   activeItem: string | null,
   key: string,
-): CSSProperties => (activeItem === key ? { color: token.colorPrimary } : {});
+): CSSProperties => (activeItem === key ? getMenuItemActiveStyle(token) : {});
 
 export const iconStyle: CSSProperties = {
   width: 22,
