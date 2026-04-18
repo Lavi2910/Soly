@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { UserRound, Store, Search, Calendar } from 'lucide-react';
 import { theme } from 'antd';
 import * as styles from './styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { SolyTypography } from '@soly/ui';
 
 const menuItems = [
   { key: 'profile', icon: UserRound, path: '/profile', label: 'פרופיל' },
@@ -15,19 +15,14 @@ const menuItems = [
   { key: 'businesses', icon: Store, path: '/businesses', label: 'עסקים' },
   { key: 'search', icon: Search, path: '/search', label: 'חיפוש' },
 ];
+
 export const NavBar = () => {
   const { token } = theme.useToken();
-  const [activeItem, setActiveItem] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-  const handleNavigate = (path: string) => {
-    navigate(path);
-  };
-
-  const itemStyle = (key: string) => ({
-    ...styles.menuItemStyle,
-    ...(activeItem === key ? styles.getMenuItemActiveStyle(token) : {}),
-  });
+  const activeItem =
+    menuItems.find((item) => pathname.startsWith(item.path))?.key ?? null;
 
   return (
     <div style={styles.containerStyle(token)}>
@@ -36,22 +31,24 @@ export const NavBar = () => {
           key={key}
           role="button"
           tabIndex={0}
-          style={itemStyle(key)}
+          style={styles.getMenuItemStyle(token, activeItem, key)}
           className="menu-item"
-          aria-label={label}
-          onPointerDown={() => setActiveItem(key)}
-          onPointerUp={() => setActiveItem(null)}
-          onPointerLeave={() => setActiveItem(null)}
-          onPointerCancel={() => setActiveItem(null)}
-          onClick={() => handleNavigate(path)}
+          onClick={() => navigate(path)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              handleNavigate(path);
+              navigate(path);
             }
           }}
         >
           <Icon style={styles.iconStyle} />
+          <SolyTypography
+            variant="caption"
+            style={styles.getLabelStyle(token, activeItem, key)}
+          >
+            {label}
+          </SolyTypography>
+          <div style={styles.activeDot(token, activeItem === key)} />
         </div>
       ))}
     </div>
