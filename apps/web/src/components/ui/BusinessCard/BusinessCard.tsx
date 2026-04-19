@@ -80,11 +80,8 @@ export const BusinessCard = ({
               {`(${reviewCount})`}
             </SolyTypography>
           </div>
-          <SolyButton variant="gradient">
-            <SolyTypography
-              variant="sectionTitle"
-              style={styles.getBookColor(token)}
-            >
+          <SolyButton variant="gradient" style={styles.getBookStyle(token)}>
+            <SolyTypography variant="body" style={styles.getBookColor(token)}>
               {'קבע תור'}
             </SolyTypography>
           </SolyButton>
