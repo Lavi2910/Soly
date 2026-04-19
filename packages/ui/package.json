@@ -21,6 +21,7 @@
     "react-dom": "^19.2.4"
   },
   "dependencies": {
-    "@soly/shared": "workspace:*"
+    "@soly/shared": "workspace:*",
+    "lucide-react": "^1.7.0"
   }
 }

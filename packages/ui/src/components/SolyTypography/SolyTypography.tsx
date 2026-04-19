@@ -1,4 +1,4 @@
-import { Typography } from 'antd';
+import { Typography, theme } from 'antd';
 import type { CSSProperties, ReactNode } from 'react';
 import * as types from './styles';
 import { type TypographyVariant } from './styles';
@@ -16,13 +16,15 @@ export const SolyTypography = ({
   style,
   color,
 }: SolyTypographyProps) => {
+  const { token } = theme.useToken();
+  const variantStyles = types.getVariantStyles(token);
   const component = types.variantMap[variant];
 
   if (component === 'Title') {
     return (
       <Typography.Title
         style={{
-          ...types.variantStyles[variant],
+          ...variantStyles[variant],
           ...style,
           ...(color !== undefined ? { color } : {}),
         }}
@@ -35,7 +37,7 @@ export const SolyTypography = ({
   return (
     <Typography.Text
       style={{
-        ...types.variantStyles[variant],
+        ...variantStyles[variant],
         ...style,
         ...(color !== undefined ? { color } : {}),
       }}
