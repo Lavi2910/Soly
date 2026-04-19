@@ -19,7 +19,7 @@ export const getCompactText = (token: GlobalToken): CSSProperties => ({
   color: token.colorWarning,
 });
 
-export const compactStar = (token: GlobalToken): CSSProperties => ({
+export const getCompactStarStyle = (token: GlobalToken): CSSProperties => ({
   color: token.colorWarning,
   width: 18,
   height: 18,

@@ -70,7 +70,7 @@ export const businessName: CSSProperties = {
   justifyContent: 'space-between',
 };
 
-export const bookColor = (token: GlobalToken): CSSProperties => ({
+export const getBookColor = (token: GlobalToken): CSSProperties => ({
   color: token.colorBgContainer,
 });
 

@@ -19,11 +19,11 @@ export const SolyRating = ({
 
   if (variant === 'compact') {
     return (
-      <div style={styles.compactContainer}>
+      <div style={{ ...styles.compactContainer, ...style }}>
         <SolyTypography variant="body" style={styles.getCompactText(token)}>
           {value}
         </SolyTypography>
-        <Star style={styles.compactStar(token)} />
+        <Star style={styles.getCompactStarStyle(token)} />
       </div>
     );
   }

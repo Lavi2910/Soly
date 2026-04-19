@@ -8,6 +8,7 @@ import {
 import { MapPin } from 'lucide-react';
 import * as styles from './styles';
 import { theme } from 'antd';
+import { getNameAvatarStyle } from '../../../../../../packages/ui/src/components/SolyAvatar/styles';
 
 interface BusinessCardProps {
   name: string;
@@ -35,8 +36,19 @@ export const BusinessCard = ({
   const { token } = theme.useToken();
   return (
     <div style={styles.getContainerStyle(token)}>
-      <div style={styles.bannerSection}>
-        <img src={bannerImage} alt="Banner Image" style={styles.bannerImage} />
+      <div
+        style={{
+          ...styles.bannerSection,
+          ...(bannerImage ? {} : getNameAvatarStyle(name, token)),
+        }}
+      >
+        {bannerImage && (
+          <img
+            src={bannerImage}
+            alt={`${name} banner`}
+            style={styles.bannerImage}
+          />
+        )}
         <div style={styles.getAvatarWrapper(token)}>
           <SolyAvatar variant="medium" name={name} src={logoImage} />
         </div>
@@ -45,15 +57,16 @@ export const BusinessCard = ({
         <SolyTypography variant="pageTitle">{name}</SolyTypography>
         {isOpen && (
           <SolyTag variant="status">
-            <SolyTypography variant="caption">{'פתוח עכשיו!'}</SolyTypography>
+            <SolyTypography variant="captionInherit">
+              {'פתוח עכשיו!'}
+            </SolyTypography>
           </SolyTag>
         )}
       </div>
       <div style={styles.infoArea}>
         <div style={styles.desc}>
           <SolyTypography variant="caption">
-            {' '}
-            {category + ' · ' + location}{' '}
+            {`${category} · ${location}`}
           </SolyTypography>
           <div style={styles.distanceDiv}>
             <MapPin style={styles.getLocationIconStyle(token)} />
@@ -70,7 +83,7 @@ export const BusinessCard = ({
           <SolyButton variant="gradient">
             <SolyTypography
               variant="sectionTitle"
-              style={styles.bookColor(token)}
+              style={styles.getBookColor(token)}
             >
               {'קבע תור'}
             </SolyTypography>

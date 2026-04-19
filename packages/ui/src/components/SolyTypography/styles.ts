@@ -8,7 +8,8 @@ export const variantMap = {
   body: 'Text',
   bodySmall: 'Text',
   caption: 'Text',
-};
+  captionInherit: 'Text',
+} as const;
 
 export type TypographyVariant = keyof typeof variantMap;
 
@@ -25,5 +26,11 @@ export const getVariantStyles = (
     fontWeight: 400,
     display: 'block',
     color: token.colorTextSecondary,
+  },
+  captionInherit: {
+    fontSize: 12,
+    fontWeight: 400,
+    display: 'block',
+    color: 'inherit',
   },
 });
