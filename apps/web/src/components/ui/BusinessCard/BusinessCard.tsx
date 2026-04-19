@@ -58,7 +58,7 @@ export const BusinessCard = ({
         {isOpen && (
           <SolyTag variant="status">
             <SolyTypography variant="captionInherit">
-              {'פתוח עכשיו!'}
+              {'פתוח עכשיו'}
             </SolyTypography>
           </SolyTag>
         )}
