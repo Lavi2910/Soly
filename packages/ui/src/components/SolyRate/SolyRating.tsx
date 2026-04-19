@@ -3,11 +3,17 @@ import { Star } from 'lucide-react';
 import { SolyTypography } from '../SolyTypography/SolyTypography';
 import * as styles from './styles';
 
-interface SolyRatingProps extends RateProps {
-  variant?: 'default' | 'compact';
+type SolyRatingDefaultProps = Omit<RateProps, 'value'> & {
+  variant?: 'default';
   value?: number;
-}
+};
 
+type SolyRatingCompactProps = Omit<RateProps, 'value'> & {
+  variant: 'compact';
+  value: number;
+};
+
+type SolyRatingProps = SolyRatingDefaultProps | SolyRatingCompactProps;
 export const SolyRating = ({
   style,
   allowHalf = true,
