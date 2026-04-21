@@ -24,7 +24,7 @@ export const getAvatarWrapper = (token: GlobalToken): CSSProperties => ({
   position: 'absolute',
   bottom: -25,
   right: 12,
-  border: `5px solid ${token.colorBgContainer}`,
+  boxShadow: token.boxShadowTertiary,
   borderRadius: '50%',
 });
 
@@ -78,4 +78,10 @@ export const bookAndRevDiv: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+};
+
+export const getBookStyle = (token: GlobalToken): CSSProperties => {
+  return {
+    boxShadow: token.boxShadowSecondary,
+  };
 };
