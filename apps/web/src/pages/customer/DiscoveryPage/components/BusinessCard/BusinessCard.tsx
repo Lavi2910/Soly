@@ -8,7 +8,7 @@ import {
 import { MapPin } from 'lucide-react';
 import * as styles from './styles';
 import { theme } from 'antd';
-import { getNameAvatarStyle } from '../../../../../../packages/ui/src/components/SolyAvatar/styles';
+import { getNameAvatarStyle } from '../../../../../../../../packages/ui/src/components/SolyAvatar/styles';
 
 interface BusinessCardProps {
   name: string;

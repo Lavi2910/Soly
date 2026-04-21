@@ -3,5 +3,5 @@ import { useAuthStore } from '@soly/shared';
 
 export const PublicRoute = () => {
   const token = useAuthStore((state) => state.token);
-  return token ? <Navigate to="/home" replace /> : <Outlet />;
+  return token ? <Navigate to="/discovery" replace /> : <Outlet />;
 };

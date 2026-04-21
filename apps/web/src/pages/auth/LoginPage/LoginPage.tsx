@@ -25,7 +25,7 @@ export default function LoginPage() {
             handleLogin(
               phone,
               password,
-              role === 'CUSTOMER' ? '/home' : '/provider',
+              role === 'CUSTOMER' ? '/discovery' : '/provider',
             );
         }}
       >
@@ -51,7 +51,7 @@ export default function LoginPage() {
               handleLogin(
                 phone,
                 password,
-                role === 'CUSTOMER' ? '/home' : '/provider',
+                role === 'CUSTOMER' ? '/discovery' : '/provider',
               )
             }
             loading={loading}

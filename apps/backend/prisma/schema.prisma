@@ -11,6 +11,7 @@ model User {
   id        String   @id @default(cuid())
   phoneNumber String  @unique
   password  String
+  avatar    String?
   firstName String
   lastName  String
   createdAt DateTime @default(now())
