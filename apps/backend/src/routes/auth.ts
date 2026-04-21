@@ -10,18 +10,20 @@ function sanitizeUser(user: {
   firstName: string;
   lastName: string;
   phoneNumber: string;
+  avatar?: string | null;
 }) {
   return {
     id: user.id,
     firstName: user.firstName,
     lastName: user.lastName,
     phoneNumber: user.phoneNumber,
+    avatar: user.avatar,
   };
 }
 
 router.post('/register', async (req, res) => {
   try {
-    const { password, phoneNumber, firstName, lastName } = req.body;
+    const { password, phoneNumber, firstName, lastName, avatar } = req.body;
 
     if (!password || !phoneNumber || !firstName || !lastName) {
       res.status(400).json({ error: 'Missing required fields' });
@@ -40,7 +42,13 @@ router.post('/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
-      data: { phoneNumber, firstName, lastName, password: hashedPassword },
+      data: {
+        phoneNumber,
+        firstName,
+        lastName,
+        password: hashedPassword,
+        avatar,
+      },
     });
 
     res
