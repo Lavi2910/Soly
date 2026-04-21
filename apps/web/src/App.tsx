@@ -5,7 +5,7 @@ import { useAuthStore } from '@soly/shared';
 import { useEffect } from 'react';
 import { AppLayout } from './components/layout/AppLayout/AppLayout';
 import LoginPage from './pages/auth/LoginPage/LoginPage';
-import { HomePage } from './pages/customer/HomePage';
+import { DiscoveryPage } from './pages/customer/DiscoveryPage/DiscoveryPage';
 import RegisterPage from './pages/auth/RegisterPage/RegisterPage';
 import WelcomePage from './pages/auth/WelcomePage/WelcomePage';
 import { PublicRoute } from './components/layout/PublicRoute';
@@ -27,7 +27,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/welcome" element={<WelcomePage />} />
           <Route element={<AppLayout />}>
-            <Route path="/home" element={<HomePage />} />
+            <Route path="/discovery" element={<DiscoveryPage />} />
             <Route path="/profile" element={<div>Profile</div>} />
             <Route path="/appointments" element={<div>Appointments</div>} />
             <Route path="/businesses" element={<div>Businesses</div>} />
