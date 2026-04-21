@@ -14,7 +14,11 @@ export const DiscoveryHeader = ({ name, avatar }: DiscoveryHeaderProps) => {
     <div style={styles.getContainerStyle(token)}>
       <SolyTypography variant="body">{`שלום, ${name} 👋`}</SolyTypography>
       <div style={styles.actionsStyle}>
-        <button style={styles.notificationButton}>
+        <button
+          type="button"
+          aria-label="Notifications"
+          style={styles.notificationButton}
+        >
           <Bell style={styles.getNotificationIcon(token)} />
         </button>
         <SolyAvatar src={avatar} variant="medium" name={name} />
