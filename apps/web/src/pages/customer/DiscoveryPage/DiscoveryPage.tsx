@@ -4,10 +4,13 @@ import * as styles from './styles';
 
 export const DiscoveryPage = () => {
   const user = useAuthStore((state) => state.user);
+  const token = useAuthStore((state) => state.token);
+  const name = user?.firstName ?? (token ? '' : 'אורח');
+  const avatar = user?.avatar;
 
   return (
     <div style={styles.pageContainer}>
-      <DiscoveryHeader name={user?.firstName || 'אורח'} avatar={user?.avatar} />
+      <DiscoveryHeader name={name} avatar={avatar} />
       {/* SearchBar — next */}
       {/* CategoryPills — next */}
       {/* PromoBanner — next */}
