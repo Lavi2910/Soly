@@ -11,17 +11,22 @@ interface DiscoveryHeaderProps {
 export const DiscoveryHeader = ({ name, avatar }: DiscoveryHeaderProps) => {
   const { token } = theme.useToken();
   return (
-    <div style={styles.getContainerStyle(token)}>
-      <SolyTypography variant="body">{`שלום, ${name} 👋`}</SolyTypography>
+    <div style={styles.containerStyle}>
+      <SolyTypography variant="body">{`שלום, ${name || 'אורח'} 👋`}</SolyTypography>
       <div style={styles.actionsStyle}>
         <button
           type="button"
           aria-label="Notifications"
-          style={styles.notificationButton}
+          style={styles.getNotificationButton(token)}
         >
           <Bell style={styles.getNotificationIcon(token)} />
         </button>
-        <SolyAvatar src={avatar} variant="medium" name={name} />
+        <SolyAvatar
+          src={avatar}
+          variant="medium"
+          name={name || 'אורח'}
+          style={styles.getAvatarStyle(token)}
+        />
       </div>
     </div>
   );
