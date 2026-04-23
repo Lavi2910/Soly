@@ -14,6 +14,7 @@ export const SearchBar = () => {
         placeholder="חפש עסק או שירות..."
         prefix={<Search style={styles.getSearchIconStyle(token)} />}
         style={styles.getInputStyle(token)}
+        aria-label="חפש עסק או שירות..."
       />
 
       <SolyButton
