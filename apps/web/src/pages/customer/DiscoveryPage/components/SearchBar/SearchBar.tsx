@@ -16,7 +16,11 @@ export const SearchBar = () => {
         style={styles.getInputStyle(token)}
       />
 
-      <SolyButton variant="gradient" style={styles.filterButtonStyle}>
+      <SolyButton
+        variant="gradient"
+        style={styles.filterButtonStyle}
+        aria-label="פתח מסננים"
+      >
         {<SlidersHorizontal style={styles.getSliderIconStyles(token)} />}
       </SolyButton>
     </div>
