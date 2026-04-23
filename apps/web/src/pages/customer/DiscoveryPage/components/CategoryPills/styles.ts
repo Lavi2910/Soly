@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 import type { GlobalToken } from 'antd';
 import { colors } from '@soly/shared';
 
-export const scrollContainer: CSSProperties = {
+export const scrollContainerStyle: CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
   gap: '0.5rem',
@@ -21,7 +21,7 @@ export const activePillStyle: CSSProperties = {
   flexShrink: 0,
 };
 
-export const getInactivePill = (token: GlobalToken): CSSProperties => ({
+export const getInactivePillStyle = (token: GlobalToken): CSSProperties => ({
   backgroundColor: token.colorBgContainer,
   border: `1px solid ${token.colorBorder}`,
   borderRadius: 20,

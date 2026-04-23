@@ -4,7 +4,7 @@ import { SolyTypography } from '@soly/ui';
 import * as styles from './styles';
 
 const CATEGORIES = [
-  { key: 'all', label: '+ הכל' },
+  { key: 'all', label: 'הכל' },
   { key: 'hair', label: '💈 ספרות' },
   { key: 'nails', label: '💅 ציפורניים' },
   { key: 'styling', label: '💇 עיצוב שיער' },
@@ -17,7 +17,7 @@ export const CategoryPills = () => {
   const [active, setActive] = useState('all');
 
   return (
-    <div style={styles.scrollContainer}>
+    <div style={styles.scrollContainerStyle}>
       {CATEGORIES.map(({ key, label }) => (
         <button
           key={key}
@@ -25,7 +25,7 @@ export const CategoryPills = () => {
           style={
             active === key
               ? styles.activePillStyle
-              : styles.getInactivePill(token)
+              : styles.getInactivePillStyle(token)
           }
           onClick={() => setActive(key)}
         >
