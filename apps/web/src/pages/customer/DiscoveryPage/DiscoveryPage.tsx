@@ -1,7 +1,7 @@
 import { useAuthStore } from '@soly/shared';
 import { DiscoveryHeader } from './components/DiscoveryHeader/DiscoveryHeader';
 import * as styles from './styles';
-
+import { SearchBar } from './components/SearchBar/SearchBar';
 export const DiscoveryPage = () => {
   const user = useAuthStore((state) => state.user);
   const token = useAuthStore((state) => state.token);
@@ -11,7 +11,7 @@ export const DiscoveryPage = () => {
   return (
     <div style={styles.pageContainer}>
       <DiscoveryHeader name={name} avatar={avatar} />
-      {/* SearchBar — next */}
+      <SearchBar />
       {/* CategoryPills — next */}
       {/* PromoBanner — next */}
       {/* SectionHeader + BusinessCards — next */}

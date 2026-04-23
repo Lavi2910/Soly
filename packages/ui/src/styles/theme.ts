@@ -15,7 +15,7 @@ const solyTheme: ThemeConfig = {
     colorTextSecondary: colors.textLight,
     fontFamily: 'Inter, system-ui, sans-serif',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    boxShadowSecondary: '0 8px 40px rgba(0, 0, 0, 0.28)',
+    boxShadowSecondary: '0 2px 12px rgba(0, 0, 0, 0.08)',
     boxShadowTertiary:
       '0 8px 32px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.10)',
   },

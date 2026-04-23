@@ -2,6 +2,8 @@ import { Router, type IRouter } from 'express';
 import bcrypt from 'bcrypt';
 import { prisma } from '../lib/prisma.js';
 import { generateToken } from '../utils/jwt.js';
+import { AUTH_MESSAGES } from '../constants/messages.js';
+import { StatusCodes } from 'http-status-codes';
 
 const router: IRouter = Router();
 
@@ -26,7 +28,9 @@ router.post('/register', async (req, res) => {
     const { password, phoneNumber, firstName, lastName, avatar } = req.body;
 
     if (!password || !phoneNumber || !firstName || !lastName) {
-      res.status(400).json({ error: 'Missing required fields' });
+      res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: AUTH_MESSAGES.MISSING_FIELDS });
       return;
     }
 
@@ -35,8 +39,8 @@ router.post('/register', async (req, res) => {
     });
     if (existing) {
       res
-        .status(409)
-        .json({ error: 'A user with this phone number already exists' });
+        .status(StatusCodes.CONFLICT)
+        .json({ error: AUTH_MESSAGES.PHONE_ALREADY_EXISTS });
       return;
     }
 
@@ -52,10 +56,12 @@ router.post('/register', async (req, res) => {
     });
 
     res
-      .status(201)
+      .status(StatusCodes.CREATED)
       .json({ token: generateToken(newUser.id), user: sanitizeUser(newUser) });
   } catch {
-    res.status(500).json({ error: 'Internal server error' });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: AUTH_MESSAGES.INTERNAL_ERROR });
   }
 });
 
@@ -64,7 +70,9 @@ router.post('/login', async (req, res) => {
     const { phoneNumber, password } = req.body;
 
     if (!password || !phoneNumber) {
-      res.status(400).json({ error: 'Missing required fields' });
+      res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: AUTH_MESSAGES.MISSING_FIELDS });
       return;
     }
 
@@ -72,19 +80,25 @@ router.post('/login', async (req, res) => {
       where: { phoneNumber },
     });
     if (!user) {
-      res.status(401).json({ error: 'Invalid credentials' });
+      res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ error: AUTH_MESSAGES.INVALID_CREDENTIALS });
       return;
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      res.status(401).json({ error: 'Invalid credentials' });
+      res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ error: AUTH_MESSAGES.INVALID_CREDENTIALS });
       return;
     }
 
     res.json({ token: generateToken(user.id), user: sanitizeUser(user) });
   } catch {
-    res.status(500).json({ error: 'Internal server error' });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: AUTH_MESSAGES.INTERNAL_ERROR });
   }
 });
 

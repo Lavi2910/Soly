@@ -1,15 +1,12 @@
 import type { CSSProperties } from 'react';
 import type { GlobalToken } from 'antd';
 
-export const getContainerStyle = (token: GlobalToken): CSSProperties => {
-  return {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '0.75rem',
-    backgroundColor: token.colorBgContainer,
-  };
+export const containerStyle: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '0.75rem',
 };
 
 export const actionsStyle: CSSProperties = {
@@ -19,18 +16,28 @@ export const actionsStyle: CSSProperties = {
   gap: '1rem',
 };
 
-export const notificationButton: CSSProperties = {
-  background: 'none',
+export const getNotificationButton = (token: GlobalToken): CSSProperties => ({
+  background: token.colorBgContainer,
   border: 'none',
+  borderRadius: '50%',
+  width: '2.5rem',
+  height: '2.5rem',
   padding: 0,
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-};
+  boxShadow: token.boxShadowSecondary,
+});
 
 export const getNotificationIcon = (token: GlobalToken): CSSProperties => ({
-  width: 22,
-  height: 22,
+  width: 20,
+  height: 20,
   color: token.colorText,
 });
+
+export const getAvatarStyle = (token: GlobalToken): CSSProperties => {
+  return {
+    boxShadow: token.boxShadowSecondary,
+  };
+};
