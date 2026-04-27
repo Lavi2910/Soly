@@ -52,20 +52,29 @@ export const BusinessCard = ({
         <div style={styles.getAvatarWrapper(token)}>
           <SolyAvatar variant="medium" name={name} src={logoImage} />
         </div>
-      </div>
-      <div style={styles.businessName}>
-        <SolyTypography variant="pageTitle">{name}</SolyTypography>
         {isOpen && (
-          <SolyTag variant="status">
+          <SolyTag
+            variant="highlight"
+            style={{ ...styles.statusTagStyle, ...styles.openTagStyle }}
+          >
             <SolyTypography variant="captionInherit">
               {'פתוח עכשיו'}
             </SolyTypography>
           </SolyTag>
         )}
       </div>
+      <div style={styles.ratingRow}>
+        <SolyRating variant="compact" value={rating} />
+        <SolyTypography variant="caption">{`(${reviewCount})`}</SolyTypography>
+      </div>
+      <div style={styles.businessName}>
+        <SolyTypography variant="sectionTitle" style={styles.nameText}>
+          {name}
+        </SolyTypography>
+      </div>
       <div style={styles.infoArea}>
         <div style={styles.desc}>
-          <SolyTypography variant="caption">
+          <SolyTypography variant="caption" style={styles.categoryText}>
             {`${category} · ${location}`}
           </SolyTypography>
           <div style={styles.distanceDiv}>
@@ -73,19 +82,14 @@ export const BusinessCard = ({
             <SolyTypography variant="caption">{distance}</SolyTypography>
           </div>
         </div>
-        <div style={styles.bookAndRevDiv}>
-          <div style={styles.ratingDiv}>
-            <SolyRating variant="compact" value={rating} />
-            <SolyTypography variant="caption">
-              {`(${reviewCount})`}
-            </SolyTypography>
-          </div>
-          <SolyButton variant="gradient" style={styles.getBookStyle(token)}>
-            <SolyTypography variant="body" style={styles.getBookColor(token)}>
-              {'קבע תור'}
-            </SolyTypography>
-          </SolyButton>
-        </div>
+        <SolyButton
+          variant="gradient"
+          style={{ ...styles.getBookStyle(token), width: '100%' }}
+        >
+          <SolyTypography variant="body" style={styles.getBookColor(token)}>
+            {'קבע תור'}
+          </SolyTypography>
+        </SolyButton>
       </div>
     </div>
   );
