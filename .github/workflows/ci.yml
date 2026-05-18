@@ -37,8 +37,5 @@ jobs:
       - name: Build web
         run: pnpm --filter @soly/web build
       
-      - name: Generate Prisma client
-        run: pnpm --filter @soly/backend db:generate
-
       - name: Type check (backend)
         run: pnpm --filter @soly/backend typecheck
