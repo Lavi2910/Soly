@@ -21,7 +21,7 @@ app.use('/api', businessRouter);
 app.use('/api', serviceRouter);
 app.use('/api', appointmentRouter);
 
-app.listen(PORT, async () => {
+async function start() {
   try {
     await db.command({ ping: 1 });
     await db
@@ -38,7 +38,13 @@ app.listen(PORT, async () => {
     await db.collection('appointments').createIndex({ serviceId: 1 });
     console.log('Connected to MongoDB');
   } catch (error) {
-    console.log('MongoDB connection failed:', error);
+    console.error('MongoDB initialization failed:', error);
+    process.exit(1);
   }
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+start();

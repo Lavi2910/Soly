@@ -46,7 +46,7 @@ export async function create(
     serviceName: service.name,
     price: service.price,
     duration: service.duration,
-    status: 'PENDING',
+    status: 'CONFIRMED',
   });
 }
 
@@ -80,7 +80,7 @@ export async function update(
   if (
     isProvider &&
     data.status &&
-    !['CANCELED', 'COMPLETED', 'NOSHOW'].includes(data.status)
+    !['CONFIRMED', 'CANCELED', 'COMPLETED', 'NOSHOW'].includes(data.status)
   ) {
     throw new AppError(400, 'Invalid status');
   }
