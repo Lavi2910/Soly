@@ -6,6 +6,7 @@ import authRouter from './routes/auth.js';
 import businessRouter from './routes/business.js';
 import serviceRouter from './routes/service.js';
 import appointmentRouter from './routes/appointment.js';
+import { db } from './lib/db.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,6 +21,12 @@ app.use('/api', businessRouter);
 app.use('/api', serviceRouter);
 app.use('/api', appointmentRouter);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  try {
+    await db.command({ ping: 1 });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.log('MongoDB connection failed:', error);
+  }
   console.log(`Server running on http://localhost:${PORT}`);
 });
