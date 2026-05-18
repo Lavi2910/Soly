@@ -5,13 +5,17 @@ export const getContainerStyle = (token: GlobalToken): CSSProperties => ({
   borderRadius: '1rem',
   overflow: 'hidden',
   backgroundColor: token.colorBgContainer,
-  boxShadow: token.boxShadowTertiary,
-  width: '16rem',
+  boxShadow: token.boxShadowSecondary,
+  width: '13rem',
+  height: '14rem',
+  flexShrink: 0,
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export const bannerSection: CSSProperties = {
   position: 'relative',
-  height: '6rem',
+  height: '5rem',
 };
 
 export const bannerImage: CSSProperties = {
@@ -30,15 +34,17 @@ export const getAvatarWrapper = (token: GlobalToken): CSSProperties => ({
 
 export const infoArea: CSSProperties = {
   display: 'flex',
-  flexDirection: 'row',
-  padding: '1rem',
-  gap: '1rem',
+  flexDirection: 'column',
+  justifyContent: 'flex-end',
+  padding: '0 0.75rem 0.5rem',
+  gap: '0.25rem',
+  flex: 1,
 };
 
 export const desc: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.2rem',
+  gap: '0.15rem',
 };
 
 export const distanceDiv: CSSProperties = {
@@ -46,7 +52,6 @@ export const distanceDiv: CSSProperties = {
   flexDirection: 'row',
   alignItems: 'center',
   gap: '0.25rem',
-  marginTop: '1rem',
 };
 
 export const getLocationIconStyle = (token: GlobalToken): CSSProperties => ({
@@ -63,25 +68,50 @@ export const ratingDiv: CSSProperties = {
   gap: '0.5rem',
 };
 
-export const businessName: CSSProperties = {
-  margin: '1.5rem 1rem 0rem 1rem',
+export const ratingRow: CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-between',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  gap: '0.25rem',
+  margin: '1.75rem 0.75rem 0 0.75rem',
+};
+
+export const businessName: CSSProperties = {
+  margin: '0.1rem 0.75rem 0 0.75rem',
+};
+
+export const openTagStyle: CSSProperties = {
+  position: 'absolute',
+  bottom: '0.4rem',
+  left: '0.5rem',
+};
+
+export const nameText: CSSProperties = {
+  overflow: 'hidden',
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  flex: 1,
+};
+
+export const categoryText: CSSProperties = {
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
 };
 
 export const getBookColor = (token: GlobalToken): CSSProperties => ({
   color: token.colorBgContainer,
 });
 
-export const bookAndRevDiv: CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1rem',
-};
-
 export const getBookStyle = (token: GlobalToken): CSSProperties => {
   return {
     boxShadow: token.boxShadowSecondary,
   };
+};
+
+export const statusTagStyle: CSSProperties = {
+  padding: '0 0.35rem',
+  lineHeight: 1,
 };
