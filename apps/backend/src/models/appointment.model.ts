@@ -10,6 +10,7 @@ function toAppointment(doc: WithId<Document>): Appointment {
 export async function findAppointmentById(
   id: string,
 ): Promise<Appointment | null> {
+  if (!ObjectId.isValid(id)) return null;
   const doc = await db
     .collection('appointments')
     .findOne({ _id: new ObjectId(id) });

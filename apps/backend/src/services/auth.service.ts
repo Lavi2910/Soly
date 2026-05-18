@@ -42,7 +42,9 @@ export async function register(data: {
 
   const hashedPassword = await bcrypt.hash(data.password, 10);
   const user = await createUser({
-    ...data,
+    phoneNumber: data.phoneNumber,
+    firstName: data.firstName,
+    lastName: data.lastName,
     password: hashedPassword,
     avatar: data.avatar || null,
   });

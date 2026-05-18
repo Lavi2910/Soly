@@ -8,6 +8,7 @@ function toService(doc: WithId<Document>): Service {
 }
 
 export async function findServiceById(id: string): Promise<Service | null> {
+  if (!ObjectId.isValid(id)) return null;
   const doc = await db
     .collection('services')
     .findOne({ _id: new ObjectId(id) });

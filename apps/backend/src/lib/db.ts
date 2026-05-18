@@ -7,4 +7,4 @@ if (!uri) {
 }
 
 const client = new MongoClient(uri);
-export const db = client.db('soly_dev');
+export const db = client.db(process.env.DB_NAME || 'soly_dev');

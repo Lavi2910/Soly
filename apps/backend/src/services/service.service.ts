@@ -121,9 +121,9 @@ export async function update(
       : undefined;
 
   return updateService(serviceId, {
-    name: data.name,
-    duration: data.duration,
-    price: data.price,
+    ...(data.name !== undefined && { name: data.name }),
+    ...(data.duration !== undefined && { duration: data.duration }),
+    ...(data.price !== undefined && { price: data.price }),
     ...(providerIds !== undefined && { providerIds }),
   });
 }

@@ -45,7 +45,15 @@ export async function update(
   const business = await findBusinessById(id);
   if (!business) throw new AppError(404, 'Business not found');
   if (business.ownerId !== userId) throw new AppError(403, 'Forbidden');
-  return updateBusiness(id, data);
+  return updateBusiness(id, {
+    ...(data.name !== undefined && { name: data.name }),
+    ...(data.phoneNumber !== undefined && { phoneNumber: data.phoneNumber }),
+    ...(data.description !== undefined && { description: data.description }),
+    ...(data.address !== undefined && { address: data.address }),
+    ...(data.logo !== undefined && { logo: data.logo }),
+    ...(data.instagram !== undefined && { instagram: data.instagram }),
+    ...(data.tiktok !== undefined && { tiktok: data.tiktok }),
+  });
 }
 
 export async function getAll() {

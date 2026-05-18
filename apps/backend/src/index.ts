@@ -24,6 +24,17 @@ app.use('/api', appointmentRouter);
 app.listen(PORT, async () => {
   try {
     await db.command({ ping: 1 });
+    await db
+      .collection('users')
+      .createIndex({ phoneNumber: 1 }, { unique: true });
+    await db
+      .collection('businesses')
+      .createIndex({ ownerId: 1 }, { unique: true });
+    await db
+      .collection('appointments')
+      .createIndex({ providerId: 1, time: 1, status: 1 });
+    await db.collection('appointments').createIndex({ customerId: 1 });
+    await db.collection('appointments').createIndex({ providerId: 1 });
     console.log('Connected to MongoDB');
   } catch (error) {
     console.log('MongoDB connection failed:', error);
