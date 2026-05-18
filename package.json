@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pnpm --filter @soly/web dev",
+    "dev": "pnpm -r --parallel --filter @soly/web --filter @soly/backend dev",
     "build": "pnpm --filter @soly/web build",
-    "dev:all": "pnpm -r --parallel dev",
     "build:all": "pnpm -r build",
     "lint": "eslint . --fix",
     "format": "prettier --write \"apps/**/*.{ts,tsx,css,json}\" \"packages/**/*.{ts,tsx,css,json}\"",
