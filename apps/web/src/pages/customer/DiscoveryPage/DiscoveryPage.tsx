@@ -17,7 +17,7 @@ export const DiscoveryPage = () => {
       <DiscoveryHeader name={name} avatar={avatar} />
       <SearchBar />
       <CategoryPills />
-      <SectionHeader title="מומלצים בקרבתך ⭐" onSeeAll={() => {}} />
+      <SectionHeader title="מומלצים בקרבתך ⭐" />
       <div
         style={{
           display: 'flex',
