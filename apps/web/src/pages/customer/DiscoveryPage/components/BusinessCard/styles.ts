@@ -74,7 +74,7 @@ export const ratingRow: CSSProperties = {
   alignItems: 'center',
   justifyContent: 'flex-end',
   gap: '0.25rem',
-  margin: '0 0.75rem 0 0.75rem',
+  margin: '1.75rem 0.75rem 0 0.75rem',
 };
 
 export const businessName: CSSProperties = {
